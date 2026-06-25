@@ -1,0 +1,228 @@
+<html>
+    <head>
+        <title>Nicotine Calculator</title>
+        <style>
+            body {
+                justify-content: center;
+                font-size: 1.2vw;
+            }
+            #main{
+                border: 5px solid lightseagreen;
+                width: 30%;
+                height:50%;
+                text-align: center;
+                background-color: aliceblue;
+                margin-left: 35vw;
+            }
+            #result-display {
+                border: 5px solid lightseagreen;
+                width: 30%;
+                text-align: center;
+                background-color: aliceblue;
+                margin-left: 35vw;
+            }
+            #vape-select{
+                background-color: azure;
+                text-align: center;
+            }
+            button {
+                background-color: azure;
+                border: 2px solid lightseagreen;
+                font-weight: bold;
+            }
+            select {
+                border:  2px solid lightseagreen;
+                font-weight: bold;
+            }
+            .display {
+                font-size: 1.5vw;
+            }
+            #days_range {
+                font-weight: bold;
+            }
+            #calc_result {
+                padding-top: 1vw;
+                padding-bottom: 1vw;;
+            }
+            #calc_result2 {
+                padding-bottom: 1vw;;
+            }
+            #calc_result3 {
+                padding-bottom: 1vw;;
+            }
+            #calc_display {
+                 border: 5px solid lightseagreen;
+                width: 30%;
+                text-align: center;
+                background-color: aliceblue;
+                margin-left: 35vw;
+            }
+            .calc_display_hidden {
+                display: none;
+            }
+            #time {
+                width: 20vw;
+                background-color: azure;
+                color: azure;
+                accent-color: lightseagreen;
+            }
+        
+        </style>
+    </head>
+    <body>
+    <div id="main">
+        <h1>Nicotine Calculator</h1>
+         <label for="days" id="days_range">Select using the range slider</label><br>
+        <input type="range" min="1" max="30" value="4" id="time" oninput="updateDays()" onload="updateDays()">
+        <br>
+        <select name="vapes" id="vape-select">
+            <option value="">Select your model</option>
+            <option value="BREEZE">Breeze Plus</option>
+            <option value="BREEZE_PRIME">Breeze Prime</option>
+            <option value="BREEZE_PRO">Breeze Pro</option>
+            <option value="LUXBAR">LuxBar</option>
+            <option value="ELF">Elfbar Ultra 7000</option>
+            <option value="ELF_12000">Elfbar 12000</option>
+            <option value="BLU_DISP">Blu Disposable</option>
+            <option value="BLU_REPL">Blu replaceable</option>
+            <option value="VUSE">Vuse</option>
+            <option value="JUUL">Juul</option>
+        </select>
+        <br>
+        
+    
+        <button onclick="calcNPD()">Calculate</button><br>
+        <label for="flavor_select">Is your vape flavored?</label><br>
+        <select name="flavor" id="flavor_select">
+            <option value="YES">Yes</option>
+            <option value="NO">No</option>
+        </select>
+        <br>
+        <label for="zip">ZIP Code*</label>
+        <input type="text" id="zip">
+        <p>*This is entirely optional, but it helps us gather data on where vape purchases are being made</p>
+    </div>
+     <div id="result-display">
+            <div id="calc_result" class="display">Select the number of days your vape typically lasts and the vape brand you typically buy to see your daily nicotine intake </div>
+            <div id="calc_result2" class="display"></div>
+            <div id="calc_result3" class="display"></div>
+        </div>
+    <div id="calc_display" onclick="formulaToggle()"> Click here to view the formulas
+        <div class="calc_display_hidden" id="calc_display_sub" >PPD = Puff in device/ # of days device lasts<br>
+Nicotine per day = NPP x Aprox PPD<br>
+Nicotine per puff = ((Strength) x (eLiquid capacity))/ #Puff in device<br>
+Cigarette Equivalent = Vape Nicotine Strength/Cigarette Nicotine Strength * PPD
+</div>
+    </div>
+        <script>
+            function formulaToggle() {
+                x = document.getElementById('calc_display_sub');
+                x.classList.toggle("calc_display_hidden");
+            }
+ function updateDays(){
+                    var x = document.getElementById("time").value;
+                    document.getElementById("days_range").innerHTML = `${x} days`;
+                }
+    function calcNPD(){
+        var x = document.getElementById('vape-select').value;
+        var y = document.getElementById('time').value
+        var z = parseInt(y);
+        if (x == "BREEZE") {
+            var a = (800 / y);
+            var n = (.04 * y);
+            var c = ((31/y) * 20);
+            var cig = (.04/1.5) * a;
+            document.getElementById('calc_result2').innerHTML = `That is approximately ${n} mg of nicotine per day`;
+            document.getElementById('calc_result3').innerHTML = `This is approximately the same nicotine equivalent as ${cig} cigarettes per day`;
+        }
+        else if (x == "BREEZE_PRIME") {
+            var b = (6000 / y);
+            var n = (.01 * y);
+            var c = ((31/y) * 15);
+            var cig = (.01/1.5) * a;
+            // document.getElementById('calc_result').innerHTML = `You take approximately ${b} puffs per day`;
+            document.getElementById('calc_result2').innerHTML = `That is approximately ${n} mg of nicotine per day`;
+            document.getElementById('calc_result3').innerHTML = `This is approximately the same nicotine equivalent as ${cig} cigarettes per day`;
+        }
+       else if (x == "BREEZE_PRO") {
+            var b = (2000 / y);
+            var n = (.02 * y);
+            var c = ((31/y) * 15);
+            var cig = (.02/1.5) * a;
+            // document.getElementById('calc_result').innerHTML = `You take approximately ${b} puffs per day`;
+            document.getElementById('calc_result2').innerHTML = `That is approximately ${n} mg of nicotine per day`;
+            document.getElementById('calc_result3').innerHTML = `This is approximately the same nicotine equivalent as ${cig} cigarettes per day`;
+        }
+        else if (x == "LUXBAR") {
+            var b = (5000 / y);
+            var n = (.01 * y);
+            var c = ((31/y) * 15);
+            var cig = (.01/1.5) * a;
+            // document.getElementById('calc_result').innerHTML = `You take approximately ${b} puffs per day`;
+            document.getElementById('calc_result2').innerHTML = `You are inhaling aproximately ${n} mg of nicotine per day`;
+            document.getElementById('calc_result3').innerHTML = `This is approximately the same nicotine equivalent as ${cig} cigarettes per day`;
+        }
+        else if(x == "ELF") {
+            var b = (7000 / y);
+            var n = (.01 * y);
+            var c = ((31/y) * 15);
+            var cig = (.01/1.5) * a;
+            // document.getElementById('calc_result').innerHTML = `You take approximately ${b} puffs per day`;
+            document.getElementById('calc_result2').innerHTML = `You are inhaling aproximately ${n} mg of nicotine per day`;
+            document.getElementById('calc_result3').innerHTML = `This is approximately the same nicotine equivalent as ${cig} cigarettes per day`;
+        }
+        else if(x == "ELF_12000") {
+            var b = (12000 / y);
+            var n = (.01 * y);
+            var c = ((31/y) * 15);
+            var cig = (.01/1.5) * a;
+            // document.getElementById('calc_result').innerHTML = `You take approximately ${b} puffs per day`;
+            document.getElementById('calc_result2').innerHTML = `You are inhaling aproximately ${n} mg of nicotine per day`;
+            document.getElementById('calc_result3').innerHTML = `This is approximately the same nicotine equivalent as ${cig} cigarettes per day`;
+        }
+          else if(x == "BLU_DISP") {
+            var b = (200 / y);
+            var n = (.01 * y);
+            var c = ((31/y) * 15);
+            var cig = (.01/1.5) * a;var cig =(1.8/n);
+            // document.getElementById('calc_result').innerHTML = `You take approximately ${b} puffs per day`;
+            document.getElementById('calc_result2').innerHTML = `You are inhaling aproximately ${n} mg of nicotine per day`;
+            document.getElementById('calc_result3').innerHTML = `This is approximately the same nicotine equivalent as ${cig} cigarettes per day`;
+        }
+        else if(x == "BLU_REPL") {
+            var b = (292 / y);
+            var n = (.02 * y);
+            var c = ((31/y) * 15);
+            var cig = (.02/1.5) * a;
+            // document.getElementById('calc_result').innerHTML = `You take approximately ${b} puffs per day`;
+            document.getElementById('calc_result2').innerHTML = `You are inhaling aproximately ${n} mg of nicotine per day`;
+            document.getElementById('calc_result3').innerHTML = `This is approximately the same nicotine equivalent as ${cig} cigarettes per day`;
+        }
+         else if(x == "VUSE") {
+            var b = (275 / y);
+            var n = (.03 * y);
+            var c = ((31/y) * 15);
+            var cig = (.03/1.5) * a;
+            // document.getElementById('calc_result').innerHTML = `You take approximately ${b} puffs per day`;
+            document.getElementById('calc_result2').innerHTML = `You are inhaling aproximately ${n} mg of nicotine per day`;
+            document.getElementById('calc_result3').innerHTML = `This is approximately the same nicotine equivalent as ${cig} cigarettes per day`;
+        }
+         else if(x == "JUUL") {
+            var b = (200 / y);
+            var n = (.06 * y);
+            var c = ((31/y) * 15);
+            var cig = (.06/1.5) * a;
+            // document.getElementById('calc_result').innerHTML = `You take approximately ${b} puffs per day`;
+            document.getElementById('calc_result2').innerHTML = `You are inhaling aproximately ${n} mg of nicotine per day`;
+            document.getElementById('calc_result3').innerHTML = `This is approximately the same nicotine equivalent as ${cig} cigarettes per day`;
+        }
+        else {
+            document.getElementById('calc_result').innerHTML = `Please select a model`;
+            document.getElementById('calc_result2').innerHTML = ``;
+            document.getElementById('calc_result3').innerHTML = ``;
+        }
+    }
+        </script>
+    </body>
+</html>
+ 
