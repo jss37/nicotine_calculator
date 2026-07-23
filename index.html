@@ -23,6 +23,14 @@
                 background-color: antiquewhite;
                 margin-left: 30vw;
             }
+            #cost_main {
+                border: 5px solid lightskyblue;
+                width: 40%;
+                /* height:50%; */
+                text-align: center;
+                background-color: lemonchiffon;
+                margin-left: 30vw;
+            }
             #result-display {
                 border: 5px solid lightskyblue;
                 width: 40%;
@@ -98,12 +106,16 @@
         #custom_button {
             background-color: antiquewhite;
         }
+        #cost_button {
+            background-color: lemonchiffon;
+        }
         </style>
     </head>
     <body>
         <div id="tab-buttons">
             <button class="tablink" onclick="openPage('Models', this)" id="defaultOpen">Models</button>
             <button class="tablink" id="custom_button" onclick="openPage('Custom', this)" >Custom</button>
+            <button class="tablink" id="cost_button" onclick="openPage('Cost',)">Cost</button>
         </div>
     <div id="Models" class="tabcontent">
         <div id="main">
@@ -198,6 +210,19 @@
                 <div id="calc_result4_custom" class="display"></div>
             </div>
     </div>
+    <div id="Cost" class="tabcontent">
+        <div id="cost_main">
+            What is your vapes cost?
+            <input type="number" placeholder="20" id="vape_cost">
+            <label for="vape_cost">$</label><br>
+            Approximately how many days does your vape last?
+            <br>
+             <input type="range" min="1" max="30" value="4" id="time_cost" oninput="updateDays_cost()" onload="updateDays_cost()"><br>
+            <div id="days_range_cost"></div>
+            <button onClick="calculateCost()">Caclulate</button>
+            <div id="cost_calc_result"></div>
+        </div>
+    </div>
     <div id="calc_display" onclick="formulaToggle()"> Click here to view the formulas
         <div class="calc_display_hidden" id="calc_display_sub" >
             <b>Approximate nicotine inhaled per day calculation:</b><br>
@@ -209,6 +234,16 @@
 </div>
     </div>
         <script>
+function calculateCost(){
+   var price = document.getElementById("vape_cost").value;
+   var price_r = parseInt(price);
+   var time = document.getElementById("time_cost").value;
+   var time_r = parseInt(time);
+   var cost = price_r * (31/time_r);
+   var cost_r = cost.toFixed(1);
+    document.getElementById("cost_calc_result").innerHTML = `You spend approximately ${cost_r} dollars a month on vapes.`;
+
+}
             
             function formulaToggle() {
                 x = document.getElementById('calc_display_sub');
@@ -221,6 +256,10 @@
 function updateDays_custom(){
                     var x = document.getElementById("time_custom").value;
                     document.getElementById("days_range_custom").innerHTML = `${x} days`;
+                }
+function updateDays_cost(){
+                    var x = document.getElementById("time_cost").value;
+                    document.getElementById("days_range_cost").innerHTML = `${x} days`;
                 }
 function calculateCustom(){
     var t = document.getElementById("time_custom").value;
