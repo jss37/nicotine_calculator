@@ -512,8 +512,8 @@ function calculateCustom() {
             var cigLr = Math.round(cigL*2) / 2;
             var cigHr = Math.round(cigH*2) / 2;
             document.getElementById('calc_result').innerHTML = `Based on information provided:`;
-            document.getElementById('calc_result2').innerHTML = `<b>Estimated absorbed nicotine per day: ${na} mg </b> `;
-            document.getElementById('calc_result3').innerHTML = `About the same nicotine as: ${cigLr} - ${cigHr} cigarettes per day `;
+            document.getElementById('calc_result2').innerHTML = `<b>Estimated absorbed nicotine per day: <u>${na}</u> mg </b> `;
+            document.getElementById('calc_result3').innerHTML = `About the same nicotine as: <u>${cigLr} - ${cigHr}</u> cigarettes per day `;
             document.getElementById('calc_result4').innerHTML = `<i>This is only an estimate. Actual nicotine intake may vary based on how you use your vape and how much nicotine your body absorbs.</i>`;
         }
          else if(x == "JUUL") {
@@ -596,7 +596,7 @@ function calculateCustom() {
             var cigLr = Math.round(cigL*2) / 2;
             var cigHr = Math.round(cigH*2) / 2;
             document.getElementById('calc_result').innerHTML = `Based on information provided:`;
-            document.getElementById('calc_result2').innerHTML = `<b>>Estimated absorbed nicotine per day: <u>${na}</u> mg `;
+            document.getElementById('calc_result2').innerHTML = `<b>Estimated absorbed nicotine per day: <u>${na}</u> mg `;
             document.getElementById('calc_result3').innerHTML = `About the same nicotine as: <u>${cigLr} - ${cigHr}</u> cigarettes per day `;
             document.getElementById('calc_result4').innerHTML = `<i>This is only an estimate. Actual nicotine intake may vary based on how you use your vape and how much nicotine your body absorbs.</i>`;
         }
