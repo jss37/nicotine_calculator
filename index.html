@@ -173,22 +173,22 @@
             <p class="labels">Which vape brand is typically used?</p>
             <select name="vapes" id="vape-select" class="labels">
                 <option value="">Select your vape</option>
-                <option value="BREEZE">Breeze Plus</option>
-                <option value="BREEZE_PRIME">Breeze Prime</option>
-                <option value="BREEZE_PRO">Breeze Pro</option>
-                <option value="LUXBAR">LuxBar</option>
-                <option value="ELF">Elfbar Ultra 7000</option>
-                <option value="ELF_12000">Elfbar 12000</option>
-                <option value="BLU_DISP">Blu Disposable</option>
-                <option value="BLU_REPL">Blu replaceable</option>
-                <option value="VUSE">Vuse</option>
-                <option value="JUUL">Juul</option>
-                <option value="RAZ_DC">RAZ DC</option>
-                <option value="RAZ_TN">RAZ TN</option>
-                <option value="LM_MO">Lost Mary MO5000</option>
-                <option value="LM_MT">Lost Mary MT15000 Turbo</option>
-                <option value="PULSE_15000">Geek Bar Pulse 15000</option>
-                <option value="PULSE_25000">Geek Bar Pulse 25000</option>
+                <option value="17.5">Breeze Plus</option>
+                <option value="50">Breeze Prime</option>
+                <option value="30">Breeze Pro</option>
+                <option value="65">LuxBar</option>
+                <option value="55">Elfbar Ultra 7000</option>
+                <option value="90">Elfbar 12000</option>
+                <option value="4.32">Blu Disposable</option>
+                <option value="6.84">Blu replaceable</option>
+                <option value="9">Vuse</option>
+                <option value="3.5">Juul</option>
+                <option value="80">RAZ DC</option>
+                <option value="60">RAZ TN</option>
+                <option value="67.5">Lost Mary MO5000</option>
+                <option value="80">Lost Mary MT15000 Turbo</option>
+                <option value="80">Geek Bar Pulse 15000</option>
+                <option value="90">Geek Bar Pulse 25000</option>
             </select>
        
             <p class="labels">How many days does one vape usually last?</p>
@@ -326,34 +326,25 @@
 
 </div>
     </div>
-        <script>
-function calculateCost(){
-   var price = document.getElementById("vape_cost").value;
-   var price_r = parseInt(price);
-   var time = document.getElementById("time_cost").value;
-   var time_r = parseInt(time);
-   var cost = price_r * (31/time_r);
-   var cost_r = cost.toFixed(1);
-    document.getElementById("cost_calc_result").innerHTML = `<b>You spend approximately ${cost_r} dollars a month on vapes.</b>`;
+    <script>
+        function openPage(pageName, elmnt) {
+  // Hide all elements with class="tabcontent" by default */
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
 
+
+  // Show the specific tab content
+  document.getElementById(pageName).style.display = "block";
+
+  
 }
-            
-            function formulaToggle() {
-                x = document.getElementById('calc_display_sub');
-                x.classList.toggle("calc_display_hidden");
-            }
- function updateDays(){
-                    var x = document.getElementById("time").value;
-                    document.getElementById("days_range").innerHTML = `${x} days`;
-                }
-function updateDays_custom(){
-                    var x = document.getElementById("time_custom").value;
-                    document.getElementById("days_range_custom").innerHTML = `${x} days`;
-                }
-function updateDays_cost(){
-                    var x = document.getElementById("time_cost").value;
-                    document.getElementById("days_range_cost").innerHTML = `${x} days`;
-                }
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click(); 
+
 function calculateCustom() {
     var tt = parseFloat(document.getElementById("days_custom").value);
     var aa = parseFloat(document.getElementById("a").value);
@@ -386,259 +377,26 @@ function calculateCustom() {
     document.getElementById('calc_result4_custom').innerHTML = `<i>This is only an estimate. Actual nicotine intake may vary based on how you use your vape and how much nicotine your body absorbs.</i>`;
 
 }
-    function calcNPD(){
-        var x = document.getElementById('vape-select').value;
+
+//
+function calcNPD(){
+        var x = parseInt(document.getElementById('vape-select').value);
         var y = document.getElementById('days').value
         var z = parseInt(y);
-        if (x == "BREEZE") {
-            var a = (5 * 3.5); //Strength X Capacity
-            var n = (a/y);// SxC / Days device Lasts
-            var nr = n.toFixed(1);
-            var na = nr * .5; // * .5 to get Estimate Absorbed
-            var cigL = (na/ 1.5) ; // Cigarette equiv low bound
-            var cigH = (na/ 1) ; // Cigarette equiv high bound
-            var cigLr = Math.round(cigL*2) / 2;
-            var cigHr = Math.round(cigH*2) / 2;
-            document.getElementById('calc_result').innerHTML = `Based on information provided:`;
-            document.getElementById('calc_result2').innerHTML = `<b>Estimated absorbed nicotine per day: <u>${na}</u> mg</b>  `;
-            document.getElementById('calc_result3').innerHTML = `About the same nicotine as: <u>${cigLr} - ${cigHr} </u>cigarettes per day`;
-            document.getElementById('calc_result4').innerHTML = `<i>This is only an estimate. Actual nicotine intake may vary based on how you use your vape and how much nicotine your body absorbs.</i>`;
+        
+           
+        var n = (x/y);// SxC / Days device Lasts
+        var nr = n.toFixed(1);
+        var na = nr * .5; // * .5 to get Estimate Absorbed
+        var cigL = (na/ 1.5) ; // Cigarette equiv low bound
+        var cigH = (na/ 1) ; // Cigarette equiv high bound
+        var cigLr = Math.round(cigL*2) / 2;
+        var cigHr = Math.round(cigH*2) / 2;
+        document.getElementById('calc_result').innerHTML = `Based on information provided:`;
+        document.getElementById('calc_result2').innerHTML = `<b>Estimated absorbed nicotine per day: <u>${na}</u> mg</b>  `;
+        document.getElementById('calc_result3').innerHTML = `About the same nicotine as: <u>${cigLr} - ${cigHr} </u>cigarettes per day`;
+        document.getElementById('calc_result4').innerHTML = `<i>This is only an estimate. Actual nicotine intake may vary based on how you use your vape and how much nicotine your body absorbs.</i>`;
         }
-        else if (x == "BREEZE_PRIME") {
-            var b = (5*10);
-            var n = (b/y);
-            var nr = n.toFixed(1);
-            var na = (nr * .5);
-            var cigL = (na/ 1.5) ;
-            var cigH = (na/ 1) ;
-            var cigLr = Math.round(cigL*2) / 2;
-            var cigHr = Math.round(cigH*2) / 2;
-            document.getElementById('calc_result').innerHTML = `Based on information provided:`;
-            document.getElementById('calc_result2').innerHTML = `<b>Estimated absorbed nicotine per day: <u>${na}</u> mg</b> `;
-            document.getElementById('calc_result3').innerHTML = `About the same nicotine as:<u> ${cigLr} - ${cigHr}</u> cigarettes per day `;
-            document.getElementById('calc_result4').innerHTML = `<i>This is only an estimate. Actual nicotine intake may vary based on how you use your vape and how much nicotine your body absorbs.</i>`;
-        }
-       else if (x == "BREEZE_PRO") {
-            var b = (5 * 6);
-            var n = (b/y);
-            var nr = n.toFixed(1);
-            var na = (nr * .5);
-            var cigL = (na/ 1.5) ;
-            var cigH = (na/ 1) ;
-            var cigLr = Math.round(cigL*2) / 2;
-            var cigHr = Math.round(cigH*2) / 2;
-            document.getElementById('calc_result').innerHTML = `Based on information provided:`;
-            document.getElementById('calc_result2').innerHTML = `<b>Estimated absorbed nicotine per day: <u>${na}</u> mg</b> `;
-            document.getElementById('calc_result3').innerHTML = `About the same nicotine as: <u>${cigLr} - ${cigHr}</u> cigarettes per day `;
-            document.getElementById('calc_result4').innerHTML = `<i>This is only an estimate. Actual nicotine intake may vary based on how you use your vape and how much nicotine your body absorbs.</i>`;
-        }
-        else if (x == "LUXBAR") {
-            var b = (5 * 13);
-            var n = (b/y);
-            var nr = n.toFixed(1);
-            var na = (nr * .5);
-            var cigL = (na/ 1.5) ;
-            var cigH = (na/ 1) ;
-            var cigLr = Math.round(cigL*2) / 2;
-            var cigHr = Math.round(cigH*2) / 2;
-            document.getElementById('calc_result').innerHTML = `Based on information provided:`;
-            document.getElementById('calc_result2').innerHTML = `<b>Estimated absorbed nicotine per day: <u>${na}</u> mg `;
-            document.getElementById('calc_result3').innerHTML = `About the same nicotine as: ${cigLr} - ${cigHr} cigarettes per day `;
-            document.getElementById('calc_result4').innerHTML = `<i>This is only an estimate. Actual nicotine intake may vary based on how you use your vape and how much nicotine your body absorbs.</i>`;
-        }
-        else if(x == "ELF") {
-            var b = (5 * 11);
-            var n = (b/y);
-            var nr = n.toFixed(1);
-            var na = (nr * .5);
-           var cigL = (na/ 1.5) ;
-            var cigH = (na/ 1) ;
-            var cigLr = Math.round(cigL*2) / 2;
-            var cigHr = Math.round(cigH*2) / 2;
-            document.getElementById('calc_result').innerHTML = `Based on information provided:`;
-            document.getElementById('calc_result2').innerHTML = `<b>Estimated absorbed nicotine per day: <u>${na}</u> mg `;
-            document.getElementById('calc_result3').innerHTML = `About the same nicotine as: <u>${cigLr} - ${cigHr}</u> cigarettes per day `;
-            document.getElementById('calc_result4').innerHTML = `<i>This is only an estimate. Actual nicotine intake may vary based on how you use your vape and how much nicotine your body absorbs.</i>`;
-        }
-        else if(x == "ELF_12000") {
-            var b = (5 * 18);
-            var n = (b/y);
-            var nr = n.toFixed(1);
-            var na = (nr * .5)
-            var cigL = (na/ 1.5) ;
-            var cigH = (na/ 1) ;
-            var cigLr = Math.round(cigL*2) / 2;
-            var cigHr = Math.round(cigH*2) / 2;
-            document.getElementById('calc_result').innerHTML = `Based on information provided:`;
-            document.getElementById('calc_result2').innerHTML = `<b>Estimated absorbed nicotine per day: <u>${na}</u> mg `;
-            document.getElementById('calc_result3').innerHTML = `About the same nicotine as: <u>${cigLr} - ${cigHr}</u> cigarettes per day `;
-            document.getElementById('calc_result4').innerHTML = `<i>This is only an estimate. Actual nicotine intake may vary based on how you use your vape and how much nicotine your body absorbs.</i>`;
-        }
-          else if(x == "BLU_DISP") {
-            var b = (2.4 * 1.8);
-            var n = (b/y);
-            var nr = n.toFixed(1);
-            var na = (nr * .5)
-            var cigL = (na/ 1.5) ;
-            var cigH = (na/ 1) ;
-            var cigLr = Math.round(cigL*2) / 2;
-            var cigHr = Math.round(cigH*2) / 2;
-            document.getElementById('calc_result').innerHTML = `Based on information provided:`;
-            document.getElementById('calc_result2').innerHTML = `<b>Estimated absorbed nicotine per day: <u>${na}</u> mg `;
-            document.getElementById('calc_result3').innerHTML = `About the same nicotine as: <u>${cigLr} - ${cigHr}</u> cigarettes per day `;
-            document.getElementById('calc_result4').innerHTML = `<i>This is only an estimate. Actual nicotine intake may vary based on how you use your vape and how much nicotine your body absorbs.</i>`;
-        }
-        else if(x == "BLU_REPL") {
-            var b = (1.9 * 3.6);
-            var n = (b/y);
-            var nr = n.toFixed(1);
-            var na = (nr * .5)
-            var cigL = (na/ 1.5) ;
-            var cigH = (na/ 1) ;
-            var cigLr = Math.round(cigL*2) / 2;
-            var cigHr = Math.round(cigH*2) / 2;
-            document.getElementById('calc_result').innerHTML = `Based on information provided:`;
-            document.getElementById('calc_result2').innerHTML = `<b>Estimated absorbed nicotine per day: <u>${na}</u> mg `;
-            document.getElementById('calc_result3').innerHTML = `About the same nicotine as: <u>${cigLr} - ${cigHr}</u> cigarettes per day `;
-            document.getElementById('calc_result4').innerHTML = `<i>This is only an estimate. Actual nicotine intake may vary based on how you use your vape and how much nicotine your body absorbs.</i>`;
-        }
-         else if(x == "VUSE") {
-            var b = (5 * 1.8);
-            var n = (b/y);
-            var nr = n.toFixed(1);
-            var na = (nr * .5);
-            var cigL = (na/ 1.5) ;
-            var cigH = (na/ 1) ;
-            var cigLr = Math.round(cigL*2) / 2;
-            var cigHr = Math.round(cigH*2) / 2;
-            document.getElementById('calc_result').innerHTML = `Based on information provided:`;
-            document.getElementById('calc_result2').innerHTML = `<b>Estimated absorbed nicotine per day: <u>${na}</u> mg </b> `;
-            document.getElementById('calc_result3').innerHTML = `About the same nicotine as: <u>${cigLr} - ${cigHr}</u> cigarettes per day `;
-            document.getElementById('calc_result4').innerHTML = `<i>This is only an estimate. Actual nicotine intake may vary based on how you use your vape and how much nicotine your body absorbs.</i>`;
-        }
-         else if(x == "JUUL") {
-            var b = (5 * .7);
-            var n = (b/y);
-            var nr = n.toFixed(1);
-            var na = (nr * .5);
-            var cigL = (na/ 1.5) ;
-            var cigH = (na/ 1) ;
-            var cigLr = Math.round(cigL*2) / 2;
-            var cigHr = Math.round(cigH*2) / 2;
-            document.getElementById('calc_result').innerHTML = `Based on information provided:`;
-            document.getElementById('calc_result2').innerHTML = `<b>Estimated absorbed nicotine per day: <u>${na}</u> mg `;
-            document.getElementById('calc_result3').innerHTML = `About the same nicotine as: <u>${cigLr} - ${cigHr}</u> cigarettes per day `;
-            document.getElementById('calc_result4').innerHTML = `<i>This is only an estimate. Actual nicotine intake may vary based on how you use your vape and how much nicotine your body absorbs.</i>`;
-        }
-        else if(x == "RAZ_TN") {
-            var b = (12 * 5);
-            var n = (b/y);
-            var nr = n.toFixed(1);
-            var na = (nr * .5);
-            var cigL = (na/ 1.5) ;
-            var cigH = (na/ 1) ;
-            var cigLr = Math.round(cigL*2) / 2;
-            var cigHr = Math.round(cigH*2) / 2;
-            document.getElementById('calc_result').innerHTML = `Based on information provided:`;
-            document.getElementById('calc_result2').innerHTML = `<b>Estimated absorbed nicotine per day: <u>${na}</u> mg `;
-            document.getElementById('calc_result3').innerHTML = `About the same nicotine as: <u>${cigLr} - ${cigHr}</u> cigarettes per day `;
-            document.getElementById('calc_result4').innerHTML = `<i>This is only an estimate. Actual nicotine intake may vary based on how you use your vape and how much nicotine your body absorbs.</i>`;
-        }
-        else if(x == "RAZ_DC") {
-            var b = (16 * 5);
-            var n = (b/y);
-            var nr = n.toFixed(1);
-            var na = (nr * .5)
-            var cigL = (na/ 1.5) ;
-            var cigH = (na/ 1) ;
-            var cigLr = Math.round(cigL*2) / 2;
-            var cigHr = Math.round(cigH*2) / 2;
-            document.getElementById('calc_result').innerHTML = `Based on information provided:`;
-            document.getElementById('calc_result2').innerHTML = `<b>>Estimated absorbed nicotine per day: <u>${na}</u> mg `;
-            document.getElementById('calc_result3').innerHTML = `About the same nicotine as: <u>${cigLr} - ${cigHr}</u> cigarettes per day `;
-            document.getElementById('calc_result4').innerHTML = `<i>This is only an estimate. Actual nicotine intake may vary based on how you use your vape and how much nicotine your body absorbs.</i>`;
-        }
-         else if(x == "LM_MO") {
-            var b = (13.5 * 5);
-            var n = (b/y);
-            var nr = n.toFixed(1);
-            var na = (nr * .5);
-            var cigL = (na/ 1.5) ;
-            var cigH = (na/ 1) ;
-            var cigLr = Math.round(cigL*2) / 2;
-            var cigHr = Math.round(cigH*2) / 2;
-            document.getElementById('calc_result').innerHTML = `Based on information provided:`;
-            document.getElementById('calc_result2').innerHTML = `<b>Estimated absorbed nicotine per day: <u>${na}</u> mg `;
-            document.getElementById('calc_result3').innerHTML = `About the same nicotine as: <u>${cigLr} - ${cigHr}</u> cigarettes per day `;
-            document.getElementById('calc_result4').innerHTML = `<i>This is only an estimate. Actual nicotine intake may vary based on how you use your vape and how much nicotine your body absorbs.</i>`;
-        }
-        else if(x == "LM_MT") {
-            var b = (16 * 5);
-            var n = (b/y);
-            var nr = n.toFixed(1);
-            var na = (nr * .5);
-            var cigL = (na/ 1.5) ;
-            var cigH = (na/ 1) ;
-            var cigLr = Math.round(cigL*2) / 2;
-            var cigHr = Math.round(cigH*2) / 2;
-            document.getElementById('calc_result').innerHTML = `Based on information provided:`;
-            document.getElementById('calc_result2').innerHTML = `<b>>Estimated absorbed nicotine per day: <u>${na}</u> mg `;
-            document.getElementById('calc_result3').innerHTML = `About the same nicotine as: <u>${cigLr} - ${cigHr}</u> cigarettes per day `;
-            document.getElementById('calc_result4').innerHTML = `<i>This is only an estimate. Actual nicotine intake may vary based on how you use your vape and how much nicotine your body absorbs.</i>`;
-        }
-        else if(x == "PULSE_15000") {
-            var b = (16 * 5);
-            var n = (b/y);
-            var nr = n.toFixed(1);
-            var na = (nr * .5);
-            var cigL = (na/ 1.5) ;
-            var cigH = (na/ 1) ;
-            var cigLr = Math.round(cigL*2) / 2;
-            var cigHr = Math.round(cigH*2) / 2;
-            document.getElementById('calc_result').innerHTML = `Based on information provided:`;
-            document.getElementById('calc_result2').innerHTML = `<b>Estimated absorbed nicotine per day: <u>${na}</u> mg `;
-            document.getElementById('calc_result3').innerHTML = `About the same nicotine as: <u>${cigLr} - ${cigHr}</u> cigarettes per day `;
-            document.getElementById('calc_result4').innerHTML = `<i>This is only an estimate. Actual nicotine intake may vary based on how you use your vape and how much nicotine your body absorbs.</i>`;
-        }
-        else if(x == "PULSE_25000") {
-            var b = (18 * 5);
-            var n = (b/y);
-            var nr = n.toFixed(1);
-            var na = (nr * .5);
-            var cigL = (na/ 1.5) ;
-            var cigH = (na/ 1) ;
-            var cigLr = Math.round(cigL*2) / 2;
-            var cigHr = Math.round(cigH*2) / 2;
-            document.getElementById('calc_result').innerHTML = `Based on information provided:`;
-            document.getElementById('calc_result2').innerHTML = `<b>>Estimated absorbed nicotine per day: <u>${na}</u> mg `;
-            document.getElementById('calc_result3').innerHTML = `About the same nicotine as: <u>${cigLr} - ${cigHr}</u> cigarettes per day `;
-            document.getElementById('calc_result4').innerHTML = `<i>This is only an estimate. Actual nicotine intake may vary based on how you use your vape and how much nicotine your body absorbs.</i>`;
-        }
-        else {
-            document.getElementById('calc_result').innerHTML = `Please select a model`;
-            document.getElementById('calc_result2').innerHTML = ``;
-            document.getElementById('calc_result3').innerHTML = ``;
-        }
-    }
-
-    function openPage(pageName, elmnt) {
-  // Hide all elements with class="tabcontent" by default */
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-
-
-  // Show the specific tab content
-  document.getElementById(pageName).style.display = "block";
-
-  
-}
-
-// Get the element with id="defaultOpen" and click on it
-document.getElementById("defaultOpen").click(); 
-        </script>
+    </script>
     </body>
-</html>
- 
+    </html>
