@@ -602,6 +602,11 @@ function calcNPD(){
         document.getElementById('calc_result3').innerHTML = `About the same nicotine as: <u>${cigLr} - ${cigHr} </u>cigarettes per day`;
         document.getElementById('calc_result4').innerHTML = `<i>This is only an estimate. Actual nicotine intake may vary based on how you use your vape and how much nicotine your body absorbs.</i>`;
         }
+        //
+        function formulaToggle() {
+                x = document.getElementById('calc_display_sub');
+                x.classList.toggle("calc_display_hidden");
+            }
     </script>
     </body>
     </html>
