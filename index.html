@@ -1,157 +1,362 @@
 <html>
     <head>
         <title>Nicotine Calculator</title>
-        <style>
-            body {
-                justify-content: center;
-                font-size: 1.2vw;
-            }
-            #main{
-                border: 5px solid lightskyblue;
-                width: 90%;
-                /* height:50%; */
-                text-align: center;
-                background-color: aliceblue;
-               
-            }
-            p {
-                text-align: left;
-            }
+       <style>
+    /* =========================
+       Global / Base Styles
+       ========================= */
 
-            #custom_main {
-                border: 5px solid lightskyblue;
-                width: 90%;
-                /* height:50%; */
-                text-align: center;
-                background-color: antiquewhite;
-                /* margin-left: 25vw; */
-            }
-            #cost_main {
-                border: 5px solid lightskyblue;
-                width: 90%;
-                /* height:50%; */
-                text-align: center;
-                background-color: lemonchiffon;
-                
-            }
-            #result-display {
-                border: 5px solid lightskyblue;
-                width: 90%;
-                text-align: center;
-                background-color: aliceblue;
-                /* margin-left: 25vw; */
-            }
-            #result-display_custom {
-                border: 5px solid lightskyblue;
-                width: 90%;
-                text-align: center;
-                background-color: antiquewhite;
-                /* margin-left: 25vw; */
-            }
-            #vape-select{
-                background-color: azure;
-                text-align: center;
-            }
-            button {
-                background-color: azure;
-                border: 2px solid lightskyblue;
-                font-weight: bold;
-            }
+    * {
+        box-sizing: border-box;
+    }
 
-            button:hover {
-                background-color: aqua;
-            }
-            select {
-                border:  2px solid lightskyblue;
-                font-weight: bold;
-            }
-            .display {
-                font-size: 1.5vw;
-            }
-            #days_range {
-                font-weight: bold;
-            }
-            #calc_result {
-                padding-top: 1vw;
-                padding-bottom: 1vw;
-            }
-            #calc_result2 {
-                padding-bottom: 1vw;
-                text-align: left;
-            }
-            #calc_result3 {
-                padding-bottom: 1vw;
-                text-align: left;
-            }
-            #calc_result4 {
-                font-size: .9vw;
-                text-align: left;
-            }
-            #calc_result_custom {
-                padding-top: 1vw;
-                padding-bottom: 1vw;;
-            }
-            #calc_result2_custom {
-                padding-bottom: 1vw;
-                text-align: left;
-            }
-            #calc_result3_custom {
-                padding-bottom: 1vw;;
-                text-align: left;
-            }
-            #calc_result4_custom {
-                font-size: .9vw;
-                text-align: left;
-            }
-            #calc_display {
-                 border: 5px solid lightskyblue;
-                width: 45%;
-                text-align: center;
-                background-color: lightskyblue;
-                margin-left: 25vw;
-            }
-            .calc_display_hidden {
-                display: none;
-            }
-            #time {
-                width: 20vw;
-                background-color: azure;
-                color: azure;
-                accent-color: lightskyblue;
-            }
+    html {
+        font-size: 16px;
+    }
+
+    body {
+        margin: 0;
+        padding: clamp(10px, 2vw, 30px);
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: clamp(14px, 1vw, 18px);
+        line-height: 1.5;
+        color: #111;
+        background-color: white;
+    }
+
+    /* =========================
+       Responsive Typography
+       ========================= */
+
+    h1 {
+        font-size: clamp(1.5rem, 3vw, 2.5rem);
+        line-height: 1.2;
+        margin: 0.5em 0;
+    }
+
+    h2 {
+        font-size: clamp(1.15rem, 2vw, 1.7rem);
+        line-height: 1.3;
+    }
+
+    p {
+        text-align: left;
+        font-size: clamp(0.9rem, 1.1vw, 1.1rem);
+    }
+
+    .labels {
+        font-size: clamp(0.95rem, 1.3vw, 1.25rem);
+    }
+
+    .display {
+        font-size: clamp(1rem, 1.5vw, 1.4rem);
+    }
+
+    .results_style {
+        font-size: clamp(1rem, 1.5vw, 1.5rem);
+    }
+
+    .formulas_style {
+        font-size: clamp(0.75rem, 0.9vw, 1rem);
+        text-align: left;
+    }
+
+    /* =========================
+       Main Containers
+       ========================= */
+
+    #main,
+    #custom_main,
+    #cost_main,
+    #result-display,
+    #result-display_custom {
+        width: min(95%, 1100px);
+        margin: 0 auto 20px auto;
+        padding: clamp(15px, 2vw, 30px);
+        border: clamp(2px, 0.35vw, 5px) solid lightskyblue;
+        text-align: center;
+    }
+
+    #main,
+    #result-display {
+        background-color: aliceblue;
+    }
+
+    #custom_main,
+    #result-display_custom {
+        background-color: antiquewhite;
+    }
+
+    #cost_main {
+        background-color: lemonchiffon;
+    }
+
+    /* =========================
+       Tabs
+       ========================= */
+
+    #tab-buttons {
+        width: min(95%, 1100px);
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        gap: clamp(5px, 1vw, 12px);
+    }
+
+    .tablink {
+        font-size: clamp(0.9rem, 1.2vw, 1.15rem);
+        padding: clamp(8px, 1vw, 14px) clamp(12px, 2vw, 24px);
+        cursor: pointer;
+        flex: 1 1 auto;
+        min-width: 180px;
+    }
+
+    /* =========================
+       Buttons
+       ========================= */
+
+    button {
+        background-color: azure;
+        border: clamp(1px, 0.15vw, 2px) solid lightskyblue;
+        font-weight: bold;
+        font-size: clamp(0.9rem, 1.2vw, 1.15rem);
+        padding: clamp(7px, 0.8vw, 12px) clamp(12px, 1.5vw, 20px);
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+    button:hover {
+        background-color: aqua;
+    }
+
+    #custom_button {
+        background-color: antiquewhite;
+    }
+
+    #custom_button:hover {
+        background-color: aqua;
+    }
+
+    #cost_button {
+        background-color: lemonchiffon;
+    }
+
+    /* =========================
+       Selects / Inputs
+       ========================= */
+
+    select,
+    input {
+        font-family: inherit;
+        font-size: clamp(0.9rem, 1.2vw, 1.15rem);
+        border: 2px solid lightskyblue;
+        padding: clamp(5px, 0.6vw, 9px);
+        max-width: 100%;
+    }
+
+    select {
+        font-weight: bold;
+    }
+
+    #vape-select {
+        background-color: azure;
+        text-align: center;
+        width: min(100%, 400px);
+    }
+
+    #days,
+    #days_custom {
+        background-color: aliceblue;
+        width: min(100%, 300px);
+    }
+
+    /* Custom input fields */
+
+    #a,
+    #b,
+    #c {
+        width: min(100%, 250px);
+        margin: 5px;
+    }
+
+    /* =========================
+       Results
+       ========================= */
+
+    #calc_result,
+    #calc_result_custom {
+        padding-top: clamp(10px, 1vw, 18px);
+        padding-bottom: clamp(10px, 1vw, 18px);
+    }
+
+    #calc_result2,
+    #calc_result3,
+    #calc_result2_custom,
+    #calc_result3_custom {
+        padding-bottom: clamp(10px, 1vw, 18px);
+        text-align: left;
+    }
+
+    #calc_result4,
+    #calc_result4_custom {
+        font-size: clamp(0.75rem, 0.9vw, 1rem);
+        text-align: left;
+    }
+
+    /* =========================
+       Formula Display
+       ========================= */
+
+    #calc_display {
+        width: min(90%, 700px);
+        margin: 20px auto;
+        padding: clamp(10px, 1vw, 18px);
+        border: clamp(2px, 0.3vw, 4px) solid lightskyblue;
+        text-align: center;
+        background-color: lightskyblue;
+        cursor: pointer;
+    }
+
+    .calc_display_hidden {
+        display: none;
+    }
+
+    /* =========================
+       Range / Slider
+       ========================= */
+
+    #time {
+        width: min(80%, 400px);
+        background-color: azure;
+        color: azure;
+        accent-color: lightskyblue;
+    }
+
+    #days_range {
+        font-weight: bold;
+    }
+
+    /* =========================
+       Tab Content
+       ========================= */
+
+    .tabcontent {
+        width: 100%;
+    }
+
+    /* =========================
+       Tablet
+       ========================= */
+
+    @media (max-width: 768px) {
+
+        body {
+            padding: 10px;
+        }
+
+        #main,
+        #custom_main,
+        #cost_main,
+        #result-display,
+        #result-display_custom {
+            width: 100%;
+            padding: 15px;
+        }
+
         #tab-buttons {
-            margin-left: 25vw;
-        }
-        #custom_button {
-            background-color: antiquewhite;
-        }
-        #custom_button:hover {
-            background-color: aqua;
-        }
-        #cost_button {
-            background-color: lemonchiffon;
-        }
-        .labels {
-            font-size: 1.5vw;
-        }
-        .results_style {
-            font-size:1.8vw;
-        }
-        .formulas_style {
-            font-size: .9vw;
-            text-align: left;
-        }
-        #days {
-            background-color: aliceblue;
-        }
-        #days_custom {
-            background-color: aliceblue;
+            width: 100%;
         }
 
         .tablink {
-            font-size:1.2vw;
+            min-width: 140px;
         }
-        </style>
+
+        p {
+            line-height: 1.6;
+        }
+    }
+
+    /* =========================
+       Mobile
+       ========================= */
+
+    @media (max-width: 480px) {
+
+        body {
+            padding: 5px;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+        }
+
+        h2 {
+            font-size: 1.15rem;
+        }
+
+        #tab-buttons {
+            flex-direction: column;
+        }
+
+        .tablink {
+            width: 100%;
+            min-width: 0;
+        }
+
+        #main,
+        #custom_main,
+        #result-display,
+        #result-display_custom {
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+
+        select,
+        input,
+        button {
+            width: 100%;
+            max-width: 100%;
+            margin: 5px 0;
+        }
+
+        #a,
+        #b,
+        #c {
+            width: 100%;
+            margin: 5px 0 15px 0;
+        }
+
+        .labels {
+            font-size: 1rem;
+        }
+
+        .results_style {
+            font-size: 1rem;
+        }
+
+        #calc_display {
+            width: 100%;
+            margin: 10px auto;
+        }
+    }
+
+    /* =========================
+       Large Screens
+       ========================= */
+
+    @media (min-width: 1400px) {
+
+        #main,
+        #custom_main,
+        #cost_main,
+        #result-display,
+        #result-display_custom,
+        #tab-buttons {
+            max-width: 1200px;
+        }
+    }
+</style>
+
     </head>
     <body>
         <div id="tab-buttons">
