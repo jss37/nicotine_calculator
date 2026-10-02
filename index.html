@@ -342,7 +342,7 @@
             <h1>Estimate Your Daily Nicotine Intake</h1>
             <h2>Estimated completion time <1 minute</h2>
                 <h2 style="text-align: left;"><u>1. Introduction</u></h2>
-            <p>Use this calculator to estimate how much nicotine you may get from your electronic nicotine delivery system (ENDS), also called a vape, each day. </p>
+            <p>Use this calculator to estimate how much nicotine you may get from your electronic cigarettes (e-cigarettes or vapes)each day. </p>
             <p>Choose your vape below. If you don't see your vape, select <b>Enter Vape Details</b> above to enter the information yourself.</p>
              
         
@@ -365,8 +365,8 @@
                 <option value="60">RAZ TN</option>
                 <option value="67.5">Lost Mary MO5000</option>
                 <option value="80">Lost Mary MT15000 Turbo</option>
-                <option value="80">Geek Bar Pulse 15000</option>
-                <option value="90">Geek Bar Pulse 25000</option>
+                <option value="80">Geek Bar Pulse 15000 (Pulse Mode)</option>
+                <option value="90">Geek Bar Pulse 25000 (Regular Mode)</option>
             </select>
        
             <p class="labels">How many days does one vape usually last?</p>
@@ -572,7 +572,7 @@ function calcNPD(){
         document.getElementById('calc_result').innerHTML = `Based on information provided:`;
         document.getElementById('calc_result2').innerHTML = `<b>Estimated absorbed nicotine per day: <u>${na}</u> mg</b>  `;
         document.getElementById('calc_result3').innerHTML = `About the same nicotine as: <u>${cigLr} - ${cigHr} </u>cigarettes per day`;
-        document.getElementById('calc_result4').innerHTML = `<i>This is only an estimate. Actual nicotine intake may vary based on how you use your vape and how much nicotine your body absorbs.</i>`;
+        document.getElementById('calc_result4').innerHTML = `<i>This is only an estimate. Actual nicotine intake may vary based on how you use your vape and how much nicotine your body absorbs. Strengths are manufacturer reported.</i>`;
         }
         //
         function formulaToggle() {
